@@ -1,5 +1,6 @@
+package Pica;
 
-public class GalvenaKlase {
+public class Darbnieks {
 
 	public static void main(String[] args) {
 		//sakums
