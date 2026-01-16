@@ -32,6 +32,6 @@ public class GalvenaKlase {
                 }
             }
         };
-        timer.scheduleAtFixedRate(task, 1000, 500);
+        timer.scheduleAtFixedRate(task, 500, 200);
     }
 }
