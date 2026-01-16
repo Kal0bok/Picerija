@@ -100,13 +100,15 @@ public class GUI {
             ImageIcon icon = new ImageIcon(pngUrl);
             Image scaledImage = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
             JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
+            //Pasvitrots attēls
+            imageLabel.setBorder(BorderFactory.createLineBorder(Color.cyan, 11, true));
 
             gbc.gridx = 0;
             gbc.gridy = 0;
             gbc.weightx = 1.0; 
             gbc.weighty = 1.0; 
             gbc.anchor = GridBagConstraints.SOUTHEAST; 
-            gbc.insets = new Insets(0, 0, 0, 0);    
+            gbc.insets = new Insets(0, 0, 20, 20);    
 
             lobbyBackground.add(imageLabel, gbc);
         }        
