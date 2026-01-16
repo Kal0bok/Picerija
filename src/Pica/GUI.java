@@ -93,6 +93,22 @@ public class GUI {
         }
 
         lobbyBackground.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+    
+        URL pngUrl = GUI.class.getResource("/image/cashier.png"); 
+        if (pngUrl != null) {
+            ImageIcon icon = new ImageIcon(pngUrl);
+            JLabel imageLabel = new JLabel(icon);
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weightx = 1.0; 
+            gbc.weighty = 1.0; 
+            gbc.anchor = GridBagConstraints.SOUTHEAST; 
+            gbc.insets = new Insets(0, 0, 20, 20);    
+
+            lobbyBackground.add(imageLabel, gbc);
+        }        
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(lobbyBackground);
