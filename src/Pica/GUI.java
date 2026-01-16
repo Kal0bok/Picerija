@@ -106,7 +106,7 @@ public class GUI {
             gbc.weightx = 1.0; 
             gbc.weighty = 1.0; 
             gbc.anchor = GridBagConstraints.SOUTHEAST; 
-            gbc.insets = new Insets(0, 0, 20, 20);    
+            gbc.insets = new Insets(0, 0, 0, 0);    
 
             lobbyBackground.add(imageLabel, gbc);
         }        
