@@ -15,7 +15,7 @@ public class GalvenaKlase {
         frame.setSize(400, 300);
         frame.setLocationRelativeTo(null);
         
-        JLabel label = new JLabel("Welcome!", JLabel.CENTER);
+        JLabel label = new JLabel("", JLabel.CENTER);
         frame.getContentPane().add(label);
         frame.setVisible(true);
 
@@ -25,14 +25,13 @@ public class GalvenaKlase {
             @Override
             public void run() {
                 if (index < vards.length) {
-                    label.setText(vards[index]);
-                    System.out.println("Izpildits: " + vards[index]);
+                	label.setText(label.getText() + vards[index]);
                     index++;
                 } else {
-                    index = 0; 
+                    timer.cancel();
                 }
             }
         };
-        timer.scheduleAtFixedRate(task, 1000, 2000);
+        timer.scheduleAtFixedRate(task, 1000, 500);
     }
 }
