@@ -98,7 +98,8 @@ public class GUI {
         URL pngUrl = GUI.class.getResource("/image/cashier.png"); 
         if (pngUrl != null) {
             ImageIcon icon = new ImageIcon(pngUrl);
-            JLabel imageLabel = new JLabel(icon);
+            Image scaledImage = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+            JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
 
             gbc.gridx = 0;
             gbc.gridy = 0;
