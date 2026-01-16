@@ -30,6 +30,6 @@ public class Darbnieks {
                 }
             }
         };
-        timer.scheduleAtFixedRate(task, 3000, 100);
+        timer.scheduleAtFixedRate(task, 1000, 100);
     }
 }

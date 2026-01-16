@@ -113,14 +113,15 @@ public class GUI {
         
         JLabel dialogLabel = new JLabel("", JLabel.CENTER);
         dialogLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        dialogLabel.setForeground(Color.WHITE);
+        dialogLabel.setForeground(Color.white);
         
         gbc.gridx = 0;
-        gbc.gridy = 0;
+        gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.CENTER;
         lobbyBackground.add(dialogLabel, gbc);
         
         Darbnieks.animateText(dialogLabel, "Labdien! Laipni lūdzam picērijā!");
+        
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(lobbyBackground);
