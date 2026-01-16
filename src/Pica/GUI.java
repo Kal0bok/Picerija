@@ -1,6 +1,7 @@
 package Pica;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -21,13 +22,11 @@ public class GUI {
         frame.setLocationRelativeTo(null); 
         
         URL imgUrl = GUI.class.getResource("/GIF/background.gif");
-        
         JLabel background = new JLabel();
         
         if (imgUrl != null) {
             background.setIcon(new ImageIcon(imgUrl));
         } else {
-            System.err.println("Kļūda: Fails nav atrasts : /GIF/background.gif");
             background.setOpaque(true);
             background.setBackground(Color.DARK_GRAY);
         }
@@ -37,28 +36,41 @@ public class GUI {
 
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0; 
-        gbc.insets = new Insets(15, 10, 15, 10); 
-        gbc.anchor = GridBagConstraints.CENTER; 
-        gbc.fill = GridBagConstraints.HORIZONTAL; 
-
-        JLabel label = new JLabel("Welcome!", JLabel.CENTER);
-        label.setFont(new Font("Arial", Font.BOLD, 40));
-        label.setForeground(Color.WHITE);
+        
+        JLabel label = new JLabel("Bobby's picerija! 🍕", JLabel.CENTER);
+        label.setFont(new Font("Segoe UI Emoji", Font.BOLD, 45));
+        label.setForeground(new Color(153, 50, 204));
+        
         gbc.gridy = 0; 
-        gbc.weighty = 5; 
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTH; 
+        gbc.insets = new Insets(60, 20, 0, 20); 
         background.add(label, gbc);
 
-        gbc.weighty = 0;
+
+        Dimension buttonSize = new Dimension(270, 40);
+
         JButton startButton = new JButton("Sākt darba maiņu");
-        startButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        startButton.setFont(new Font("Arial", Font.BOLD, 22));
+        startButton.setPreferredSize(buttonSize);
         startButton.setFocusable(false); 
-        gbc.gridy = 0; 
+        
+        gbc.gridy = 1; 
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.NONE; 
+        gbc.anchor = GridBagConstraints.CENTER; 
+        gbc.insets = new Insets(10, 10, 10, 10); 
         background.add(startButton, gbc);
 
         JButton exitButton = new JButton("Iziet");
-        exitButton.setFont(new Font("Arial", Font.PLAIN, 20));
+        exitButton.setFont(new Font("Arial", Font.BOLD, 22));
+        exitButton.setPreferredSize(buttonSize);
         exitButton.setFocusable(false);
+        
         gbc.gridy = 2; 
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTH; 
+        gbc.insets = new Insets(10, 10, 60, 10); 
         background.add(exitButton, gbc);
         
         exitButton.addActionListener(e -> System.exit(0));
