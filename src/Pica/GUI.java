@@ -82,11 +82,11 @@ public class GUI {
     }
 
     private static JPanel createLobby(JFrame frame) {
-        URL lobbyImgUrl = GUI.class.getResource("/GIF/lobby.gif");
+        URL lobbyImgUrl = GUI.class.getResource("/GIF/pizzeria.gif");
         JLabel lobbyBackground = new JLabel();
         
         if (lobbyImgUrl != null) {
-            lobbyBackground.setIcon(new ImageIcon(lobbyImgUrl));
+            lobbyBackground.setText("<html><img src='" + lobbyImgUrl + "' width='800' height='600'></html>");
         } else {
             lobbyBackground.setOpaque(true);
             lobbyBackground.setBackground(Color.BLACK);
