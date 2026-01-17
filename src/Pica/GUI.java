@@ -104,7 +104,7 @@ public class GUI {
         JMenuItem item3 = new JMenuItem("Beigt darbu");
 
         item3.addActionListener(e -> System.exit(0));
-        item1.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Izvēлne atvērta!"));
+        item1.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Izvēlne atvērta!"));
 
         popupMenu.add(item1);
         popupMenu.add(item2);
@@ -113,6 +113,14 @@ public class GUI {
 
         menuButton.addActionListener(e -> popupMenu.show(menuButton, 0, menuButton.getHeight()));
     
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0;
+        gbc.anchor = GridBagConstraints.NORTHWEST; 
+        gbc.insets = new Insets(20, 20, 0, 0);    
+        lobbyBackground.add(menuButton, gbc);
+        
         URL pngUrl = GUI.class.getResource("/image/cashier.png"); 
         if (pngUrl != null) {
             ImageIcon icon = new ImageIcon(pngUrl);
