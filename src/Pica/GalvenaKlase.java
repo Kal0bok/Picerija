@@ -2,6 +2,9 @@ package Pica;
 
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 public class GalvenaKlase {
 	
 	private static Random rand = new Random();
@@ -25,6 +28,29 @@ public class GalvenaKlase {
                 apkalpotKlientu();
             }
         } while (!izvele.equals("0"));
+        
+        private static void processIevads(String koSakaKlient, String pareizaAtbilde, String ievadesLauks) {
+            String lietotajaIevads = "";
+            
+            while (true) {
+                JOptionPane.showMessageDialog(null, koSakaKlient, "Klients runā...", JOptionPane.PLAIN_MESSAGE);
+                lietotajaIevads = JOptionPane.showInputDialog(null, ievadesLauks);
+
+                if (lietotajaIevads == null) {
+                    JOptionPane.showMessageDialog(null, 
+                        "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €", 
+                        "PĀRKĀPUMS", JOptionPane.ERROR_MESSAGE);
+                    System.exit(0); 
+                }
+
+                if (lietotajaIevads.equalsIgnoreCase(pareizaAtbilde)) {
+                    break; 
+                } else {
+                    JOptionPane.showMessageDialog(null, 
+                        "Nepareizi! Klients atkārto vēlreiz...", 
+                        "Kļūda", JOptionPane.WARNING_MESSAGE);
+                }
+            }  
     }
 }
     	
