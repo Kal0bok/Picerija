@@ -10,8 +10,25 @@ public class GalvenaKlase {
     private static final String[] UZVĀRDI = {"Killer", "Bērziņš", "Ozols", "Zariņš", "Lapiņš", "Sokolovs", "Kļaviņš", "Vītols"};
     private static final String[] PICAS = {"Margarita", "Studentu", "Havajas", "Kapri", "Lauku", "Vegāniskā", "Salami", "Meksikāņu"};
     private static final String[] UZKODAS = {"Frī kartupeļi", "Sīpolu gredzeni", "Ķiploku grauzdiņi", "Mērce", "Nekas papildus"};
+    
+    public static void atvertProgrammu(JFrame frame) {
+        String izvele;
+        do {
+            izvele = JOptionPane.showInputDialog(null, 
+                "1 - Pieņemt nākamo pasūtījumu\n" +
+                "0 - Atgriezties uz galveno izvēlni", 
+                "R-keeper (Aktīva maiņa)", JOptionPane.QUESTION_MESSAGE);
+            
+            if (izvele == null) break;
+
+            if (izvele.equals("1")) {
+                apkalpotKlientu();
+            }
+        } while (!izvele.equals("0"));
+    }
 }
     	
+
     	
     	
     
