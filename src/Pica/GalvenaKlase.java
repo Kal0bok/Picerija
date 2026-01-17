@@ -50,7 +50,35 @@ public class GalvenaKlase {
                         "Nepareizi! Klients atkārto vēlreiz...", 
                         "Kļūda", JOptionPane.WARNING_MESSAGE);
                 }
-            }  
+                
+                private static void apkalpotKlientu() {
+                    String[] opcijas = {"Uz vietas", "Zvans"};
+                    int tipsIndex = JOptionPane.showOptionDialog(null, "Kā klients pasūta?", 
+                            "Jauns pasūtījums", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
+                    
+                    if (tipsIndex == -1) return;
+                    String tips = opcijas[tipsIndex];
+
+                    String pilnsVards = VĀRDI[rand.nextInt(VĀRDI.length)] + " " + UZVĀRDI[rand.nextInt(UZVĀRDI.length)];
+                    String numurs = "2" + (1000000 + rand.nextInt(8999999));
+                    String pica = PICAS[rand.nextInt(PICAS.length)];
+                    String uzkoda = UZKODAS[rand.nextInt(UZKODAS.length)];
+
+                    processIevads("Labdien! Mani sauc " + pilnsVards + ".", pilnsVards, "Ievadiet klienta Vārdu un Uzvārdu:");
+                    processIevads("Mans telefona numurs ir: " + numurs + ".", numurs, "Ievadiet klienta telefona numuru:");
+                    processIevads("Es vēlētos pasūtīt picu: " + pica + ".", pica, "Kādu picu klients vēlas?");
+                    processIevads("Pie pasūtījuma man, lūdzu, vēl: " + uzkoda + ".", uzkoda, "Kādu papildus uzkodu klients izvēlējās?");
+
+                    double cena = 12.0; 
+                    if (tips.equals("Zvans")) {
+                        String adrese = "Rīgas iela " + (rand.nextInt(100) + 1);
+                        processIevads("Mana adrese piegādei ir: " + adrese + ".", adrese, "Ievadiet piegādes adresi:");
+                        cena += 5.0; 
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Pasūtījums veiksmīgi noformēts!\nKlients: " + pilnsVards + 
+                        "\nKopējā summa: " + String.format("%.2f", cena) + "€");
+              
     }
 }
     	
