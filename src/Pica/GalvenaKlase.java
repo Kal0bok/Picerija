@@ -21,6 +21,10 @@ public class GalvenaKlase {
 
         if (tipsIndex == -1) return;
         String tips = opcijas[tipsIndex];
+        
+        if (tips.equals("Uz vietas")) {
+            GUI.piegKlients1(true);
+        }
 
         Klients k = new Klients();
         Pica p = new Pica();
