@@ -1,21 +1,32 @@
 package Pica;
 
-public class Pica {
-    private String nosaukums;
-    private String izmers;
-    private String piedevas;
-    private double cena;
+import java.util.ArrayList;
 
-    public Pica(String nosaukums, String izmers, String piedevas, double cena) {
+public class Pica {
+    protected String nosaukums;
+    protected String izmers; 
+    protected double pamataCena;
+    protected ArrayList<String> piedevas = new ArrayList<>();
+
+    public Pica(String nosaukums, String izmers, double pamataCena) {
         this.nosaukums = nosaukums;
         this.izmers = izmers;
-        this.piedevas = piedevas;
-        this.cena = cena;
+        this.pamataCena = pamataCena;
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s (%s) | Piedevas: %s | Cena: %.2f€", 
-                nosaukums, izmers, piedevas, cena);
+    public double aprekinatCenu() {
+        double total = pamataCena;
+        if (izmers.equals("Vidēja")) total += 2.0;
+        if (izmers.equals("Liela")) total += 4.0;
+        total += piedevas.size() * 0.50;
+        return total;
+    }
+
+    public void pievienotPiedevu(String piedeva) {
+        this.piedevas.add(piedeva);
+    }
+    
+    public String dabutInformaciju() {
+        return nosaukums + " (" + izmers + "), Piedevas: " + piedevas.toString();
     }
 }
