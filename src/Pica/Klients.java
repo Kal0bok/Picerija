@@ -22,7 +22,7 @@ public class Klients {
     }
 
     public static JLabel createClientLabel() {
-        URL pngUrl = Klients.class.getResource("/image/cashier.png"); // или client.png
+        URL pngUrl = Klients.class.getResource("/image/cashier.png"); 
         if (pngUrl != null) {
             ImageIcon icon = new ImageIcon(pngUrl);
             Image scaledImage = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);

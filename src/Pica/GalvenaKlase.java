@@ -1,97 +1,71 @@
 package Pica;
 
 import javax.swing.*;
-import java.util.Random;
 
 public class GalvenaKlase {
-
-    private static Random rand = new Random();
-
-    private static final String[] VĀRDI = {"Nikita", "Artjoms", "Jānis", "Maksims", "Anna", "Marija", "Kristaps", "Laura"};
-    private static final String[] UZVĀRDI = {"Killer", "Bērziņš", "Ozols", "Zariņš", "Lapiņš", "Sokolovs", "Kļaviņš", "Vītols"};
-    private static final String[] PICAS = {"Margarita", "Studentu", "Havajas", "Kapri", "Lauku", "Vegāniskā", "Salami", "Meksikāņu"};
-    private static final String[] UZKODAS = {"Frī kartupeļi", "Sīpolu gredzeni", "Ķiploku grauzdiņi", "Mērce", "Nekas papildus"};
 
     public static void atvertProgrammu(JFrame frame) {
         String izvele;
         do {
-            izvele = JOptionPane.showInputDialog(null, 
-                "1 - Pieņemt nākamo pasūtījumu\n" +
-                "0 - Atgriezties uz galveno izvēlni", 
-                "R-keeper (Aktīva maiņa)", JOptionPane.QUESTION_MESSAGE);
-            
-            if (izvele == null) break;
-
-            if (izvele.equals("1")) {
+            izvele = JOptionPane.showInputDialog(null, "1 - Pienemt pasutijumu\n0 - Iziet");
+            if (izvele != null && izvele.equals("1")) {
                 apkalpotKlientu();
             }
-        } while (!izvele.equals("0"));
+        } while (izvele != null && !izvele.equals("0"));
     }
 
     private static void apkalpotKlientu() {
         String[] opcijas = {"Uz vietas", "Zvans"};
-        int tipsIndex = JOptionPane.showOptionDialog(null, "Kā klients pasūta?", 
-                "Jauns pasūtījums", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opcijas, opcijas[0]);
-        
+        int tipsIndex = JOptionPane.showOptionDialog(null, "Pasūtījuma veids:", "R-keeper",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcijas, opcijas[0]);
+
         if (tipsIndex == -1) return;
         String tips = opcijas[tipsIndex];
 
-        String vards = VĀRDI[rand.nextInt(VĀRDI.length)];
-        String uzvards = UZVĀRDI[rand.nextInt(UZVĀRDI.length)];
-        String pilnsVards = vards + " " + uzvards;
-        String numurs = "2" + (1000000 + rand.nextInt(8999999));
-        String pica = PICAS[rand.nextInt(PICAS.length)];
-        String uzkoda = UZKODAS[rand.nextInt(UZKODAS.length)];
+        Klients k = new Klients();
+        Pica p = new Pica();
 
-        processIevads("Labdien! Mani sauc " + pilnsVards + ".", 
-                      pilnsVards, 
-                      "Ievadiet klienta Vārdu un Uzvārdu:");
+        processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet klienta vārду un uzvārdu:");
 
-        processIevads("Mans telefona numurs ir: " + numurs + ".", 
-                      numurs, 
-                      "Ievadiet klienta telefona numuru:");
+        processIevads("Mans numurs ir " + k.telefons, k.telefons, "Ierakstiet tel. numuru:");
 
-        processIevads("Es vēlētos pasūtīt picu: " + pica + ".", 
-                      pica, 
-                      "Kādu picu klients vēlas?");
+        processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kāду picu klients vēlas?");
 
-        processIevads("Pie pasūtījuma man, lūdzu, vēl: " + uzkoda + ".", 
-                      uzkoda, 
-                      "Kādu papildus uzkodu klients izvēlējās?");
+        processIevads("Izmērs būs " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
 
-        double cena = 12.0; 
-        if (tips.equals("Zvans")) {
-            String adrese = "Rīgas iela " + (rand.nextInt(100) + 1);
-            processIevads("Mana adrese piegādei ir: " + adrese + ".", 
-                          adrese, 
-                          "Ievadiet piegādes adresi:");
-            cena += 5.0; 
+        processIevads("Mērci man, lūdzu, " + p.izveletaMerce, p.izveletaMerce, "Kāду mērci klients izvēlējās?");
+
+        if (!p.izveletaUzkoda.equals("Nekas")) {
+            processIevads("Vēlētos arī uzkodu: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kāду uzkodu pievienot?");
         }
 
-        JOptionPane.showMessageDialog(null, "Pasūtījums veiksmīgi noformēts!\nKlients: " + pilnsVards + 
-            "\nKopējā summa: " + String.format("%.2f", cena) + "€");
+        if (!p.izveletsDzeriens.equals("Nekas")) {
+            processIevads("Dzert gribēšu: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kāду dzēриenu pievienot?");
+        }
+
+        if (tips.equals("Zvans")) {
+            processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:");
+            p.kopejaCena += 4.50;
+            JOptionPane.showMessageDialog(null, "Piegādes maksa +4.50€ pievienota.");
+        }
+
+        JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopā apmaksai: " + String.format("%.2f", p.kopejaCena) + "€");
     }
 
-    private static void processIevads(String koSakaKlient, String pareizaAtbilde, String ievadesLauks) {
-        String lietotajaIevads = "";
-        
+    private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
         while (true) {
-            JOptionPane.showMessageDialog(null, koSakaKlient, "Klients runā...", JOptionPane.PLAIN_MESSAGE);
-            lietotajaIevads = JOptionPane.showInputDialog(null, ievadesLauks);
+            JOptionPane.showMessageDialog(null, klientaTeiktais, "Klients runā", JOptionPane.PLAIN_MESSAGE);
+            String ievads = JOptionPane.showInputDialog(null, lauks);
 
-            if (lietotajaIevads == null) {
-                JOptionPane.showMessageDialog(null, 
-                    "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €", 
-                    "PĀRKĀPUMS", JOptionPane.ERROR_MESSAGE);
-                System.exit(0); 
+            if (ievads == null) {
+                JOptionPane.showMessageDialog(null, "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €", "Sods", JOptionPane.ERROR_MESSAGE);
+                System.exit(0);
             }
 
-            if (lietotajaIevads.equalsIgnoreCase(pareizaAtbilde)) {
-                break; 
+            if (ievads.equalsIgnoreCase(pareizi)) {
+                break;
             } else {
-                JOptionPane.showMessageDialog(null, 
-                    "Nepareizi! Klients atkārto vēlreiz...", 
-                    "Kļūda", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nepareizi! Klients atkārto vēlreiz...", "Kļūda", JOptionPane.WARNING_MESSAGE);
             }
         }
     }
