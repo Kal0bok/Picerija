@@ -95,8 +95,8 @@ public class GUI {
         lobbyBackground.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-        JButton menuButton = new JButton("Menu ☰");
-        menuButton.setFont(new Font("Arial", Font.BOLD, 16));
+        JButton menuButton = new JButton(
+        		"<html>R-keeper <font face='Segoe UI Symbol'>&#9776;</font></html>");
         
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem item1 = new JMenuItem("Picas izvēle");
