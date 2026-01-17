@@ -134,7 +134,7 @@ public class GUI {
         gbcDialog.gridx = 0;
         gbcDialog.gridy = 0;
         gbcDialog.anchor = GridBagConstraints.NORTH; 
-        gbcDialog.insets = new Insets(100, 50, 0, 50); 
+        gbcDialog.insets = new Insets(40, 50, 0, 50);
         lobbyBackground.add(dialogLabel, gbcDialog);
         
         URL pngUrl = GUI.class.getResource("/image/cashier.png"); 
