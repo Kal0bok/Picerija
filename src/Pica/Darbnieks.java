@@ -39,6 +39,7 @@ public class Darbnieks {
                 }
             }
         };
+
         timer.scheduleAtFixedRate(task, 1000, 100);
     }
 }
