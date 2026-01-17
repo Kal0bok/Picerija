@@ -121,38 +121,36 @@ public class GUI {
         gbc.insets = new Insets(20, 20, 0, 0);    
         lobbyBackground.add(menuButton, gbc);
         
+        JLabel dialogLabel = new JLabel("", JLabel.CENTER);
+        dialogLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        dialogLabel.setForeground(Color.white);
+        dialogLabel.setOpaque(true);
+        dialogLabel.setBackground(new Color(0, 0, 0, 180));
+        dialogLabel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(95, 158, 160), 3), 
+                BorderFactory.createEmptyBorder(15, 25, 15, 25)));
+        
+        GridBagConstraints gbcDialog = new GridBagConstraints();
+        gbcDialog.gridx = 0;
+        gbcDialog.gridy = 0;
+        gbcDialog.anchor = GridBagConstraints.NORTH; 
+        gbcDialog.insets = new Insets(100, 50, 0, 50); 
+        lobbyBackground.add(dialogLabel, gbcDialog);
+        
         URL pngUrl = GUI.class.getResource("/image/cashier.png"); 
         if (pngUrl != null) {
             ImageIcon icon = new ImageIcon(pngUrl);
             Image scaledImage = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
             JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
 
-            gbc.gridx = 0;
-            gbc.gridy = 0;
-            gbc.weightx = 1.0; 
-            gbc.weighty = 1.0; 
-            gbc.anchor = GridBagConstraints.SOUTHEAST; 
-            gbc.insets = new Insets(0, 0, 0, 0);    
-
-            lobbyBackground.add(imageLabel, gbc);
-        }      
-        
-        JLabel dialogLabel = new JLabel("", JLabel.CENTER);
-        dialogLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        dialogLabel.setForeground(Color.white);
-        
-        dialogLabel.setOpaque(true);
-        dialogLabel.setBackground(new Color(0, 0, 0, 180));
-        
-        dialogLabel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(95, 158, 160), 3), 
-                BorderFactory.createEmptyBorder(15, 25, 15, 25)));
-        
-        gbc.gridx = 0;
-        gbc.gridy = 0;             
-        gbc.weighty = 1.0;        
-        gbc.anchor = GridBagConstraints.NORTH; 
-        gbc.insets = new Insets(80, 50, 0, 50);
+            GridBagConstraints gbcChar = new GridBagConstraints();
+            gbcChar.gridx = 0;
+            gbcChar.gridy = 0;
+            gbcChar.weightx = 1.0; 
+            gbcChar.weighty = 1.0; 
+            gbcChar.anchor = GridBagConstraints.SOUTHEAST; 
+            lobbyBackground.add(imageLabel, gbcChar);
+        }
         
         Darbnieks.animateText(dialogLabel, "Labdien! Laipni lūdzam picērijā!");
         
