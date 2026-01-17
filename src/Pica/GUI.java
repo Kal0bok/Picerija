@@ -5,6 +5,8 @@ import java.net.URL;
 import javax.swing.*;
 
 public class GUI {
+    private static JLabel clientLabel = new JLabel();
+    private static JLabel lobbyBackground = new JLabel();
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("Picerija");
@@ -84,7 +86,7 @@ public class GUI {
 
     private static JPanel createLobby(JFrame frame) {
         URL lobbyImgUrl = GUI.class.getResource("/GIF/pizzeria.gif");
-        JLabel lobbyBackground = new JLabel();
+        lobbyBackground = new JLabel();
         
         if (lobbyImgUrl != null) {
             lobbyBackground.setText("<html><img src='" + lobbyImgUrl + "' width='800' height='600'></html>");
@@ -130,21 +132,44 @@ public class GUI {
         if (pngUrl != null) {
             ImageIcon icon = new ImageIcon(pngUrl);
             Image scaledImage = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
-            JLabel imageLabel = new JLabel(new ImageIcon(scaledImage));
+            JLabel cashierLabel = new JLabel(new ImageIcon(scaledImage));
 
-            GridBagConstraints gbcChar = new GridBagConstraints();
-            gbcChar.gridx = 0;
-            gbcChar.gridy = 0;
-            gbcChar.weightx = 1.0; 
-            gbcChar.weighty = 1.0; 
-            gbcChar.anchor = GridBagConstraints.SOUTHEAST; 
-            lobbyBackground.add(imageLabel, gbcChar);
+            GridBagConstraints gbcCashier = new GridBagConstraints();
+            gbcCashier.gridx = 0;
+            gbcCashier.gridy = 0;
+            gbcCashier.weightx = 1.0; 
+            gbcCashier.weighty = 1.0; 
+            gbcCashier.anchor = GridBagConstraints.SOUTHEAST; 
+            lobbyBackground.add(cashierLabel, gbcCashier);
         }
+
+        clientLabel = new JLabel();
+        GridBagConstraints gbcClient = new GridBagConstraints();
+        gbcClient.gridx = 0;
+        gbcClient.gridy = 0;
+        gbcClient.weightx = 1.0;
+        gbcClient.weighty = 1.0;
+        gbcClient.anchor = GridBagConstraints.SOUTHWEST;
+        lobbyBackground.add(clientLabel, gbcClient);
         
         Darbnieks.animateText(dialogLabel, "Labdien! Laipni lūdzam picērijā!");
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.add(lobbyBackground);
         return panel;
+    }
+
+    public static void piegKlients1(boolean visible) {
+        if (visible) {
+            URL clientUrl = GUI.class.getResource("/image/client1.png");
+            if (clientUrl != null) {
+                ImageIcon icon = new ImageIcon(clientUrl);
+                Image img = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+                clientLabel.setIcon(new ImageIcon(img));
+            }
+        } else {
+            clientLabel.setIcon(null);
+        }
+        lobbyBackground.repaint();
     }
 }

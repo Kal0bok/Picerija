@@ -29,22 +29,22 @@ public class GalvenaKlase {
         Klients k = new Klients();
         Pica p = new Pica();
 
-        processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet klienta vārду un uzvārdu:");
+        processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet klienta vārdu un uzvārdu:");
 
         processIevads("Mans numurs ir " + k.telefons, k.telefons, "Ierakstiet tel. numuru:");
 
-        processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kāду picu klients vēlas?");
+        processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?");
 
         processIevads("Izmērs būs " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
 
-        processIevads("Mērci man, lūdzu, " + p.izveletaMerce, p.izveletaMerce, "Kāду mērci klients izvēlējās?");
+        processIevads("Mērci man, lūdzu, " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci klients izvēlējās?");
 
         if (!p.izveletaUzkoda.equals("Nekas")) {
-            processIevads("Vēlētos arī uzkodu: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kāду uzkodu pievienot?");
+            processIevads("Vēlētos arī uzkodu: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu pievienot?");
         }
 
         if (!p.izveletsDzeriens.equals("Nekas")) {
-            processIevads("Dzert gribēšu: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kāду dzēриenu pievienot?");
+            processIevads("Dzert gribēšu: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kādu dzērienu pievienot?");
         }
 
         if (tips.equals("Zvans")) {
