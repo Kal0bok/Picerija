@@ -120,8 +120,10 @@ public class GUI {
                 BorderFactory.createEmptyBorder(15, 25, 15, 25)));
         
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 1; 
+        gbc.weighty = 0.2;
         gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 50, 50, 50);
         lobbyBackground.add(dialogLabel, gbc);
         
         Darbnieks.animateText(dialogLabel, "Labdien! Laipni lūdzam picērijā!");
