@@ -115,6 +115,9 @@ public class GUI {
         dialogLabel.setFont(new Font("Arial", Font.BOLD, 20));
         dialogLabel.setForeground(Color.white);
         
+        dialogLabel.setOpaque(true);
+        dialogLabel.setBackground(new Color(0, 0, 0, 180));
+        
         dialogLabel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(95, 158, 160), 3), 
                 BorderFactory.createEmptyBorder(15, 25, 15, 25)));
