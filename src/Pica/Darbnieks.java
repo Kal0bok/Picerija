@@ -28,6 +28,12 @@ public class Darbnieks {
                 } else {
                     timer.cancel();
                 }
+                
+                try {
+                    Thread.sleep(2000); 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         };
         timer.scheduleAtFixedRate(task, 1000, 100);
