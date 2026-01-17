@@ -112,8 +112,12 @@ public class GUI {
         }      
         
         JLabel dialogLabel = new JLabel("", JLabel.CENTER);
-        dialogLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        dialogLabel.setFont(new Font("Arial", Font.BOLD, 20));
         dialogLabel.setForeground(Color.white);
+        
+        dialogLabel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(95, 158, 160), 3), 
+                BorderFactory.createEmptyBorder(15, 25, 15, 25)));
         
         gbc.gridx = 0;
         gbc.gridy = 5;
