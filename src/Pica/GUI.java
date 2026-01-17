@@ -1,26 +1,8 @@
 package Pica;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.net.URL;
-
-import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
+import javax.swing.*;
 
 public class GUI {
 
@@ -167,33 +149,8 @@ public class GUI {
         
         Darbnieks.animateText(dialogLabel, "Labdien! Laipni lūdzam picērijā!");
         
-        JButton menuButton = new JButton("Открыть меню");
-
-        JPopupMenu popupMenu = new JPopupMenu();
-
-        JMenuItem item1 = new JMenuItem("Настройки");
-        JMenuItem item2 = new JMenuItem("Профиль");
-        JMenuItem item3 = new JMenuItem("Выход");
-
-        item3.addActionListener(e -> System.exit(0));
-        item1.addActionListener(e -> JOptionPane.showMessageDialog(frame, "Настройки открыты!"));
-
-        popupMenu.add(item1);
-        popupMenu.add(item2);
-        popupMenu.addSeparator(); 
-        popupMenu.add(item3);
-
-        menuButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                popupMenu.show(menuButton, 0, menuButton.getHeight());
-            }
-        });
-        
 
         JPanel panel = new JPanel(new BorderLayout());
-        frame.add(menuButton);
-        frame.setVisible(true);
         panel.add(lobbyBackground);
         return panel;
     }
