@@ -172,4 +172,18 @@ public class GUI {
         }
         lobbyBackground.repaint();
     }
+    
+    public static void piegKlients2(boolean visible) {
+        if (visible) {
+            URL clientUrl = GUI.class.getResource("/image/client2.png");
+            if (clientUrl != null) {
+                ImageIcon icon = new ImageIcon(clientUrl);
+                Image img = icon.getImage().getScaledInstance(300, 400, Image.SCALE_SMOOTH);
+                clientLabel.setIcon(new ImageIcon(img));
+            }
+        } else {
+            clientLabel.setIcon(null);
+        }
+        lobbyBackground.repaint();
+    }
 }
