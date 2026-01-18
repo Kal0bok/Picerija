@@ -109,6 +109,15 @@ public class GalvenaKlase {
 
         String pasutijums = pasutijumuRinda.poll();
         
+        try {
+            String[] lines = pasutijums.split("\n");
+            String priceLine = lines[lines.length - 1]; 
+            String priceVal = priceLine.replaceAll("[^0-9,.]", "").replace(",", ".");
+            kase += Double.parseDouble(priceVal);
+        } catch (Exception e) {
+            System.out.println("Kļūda aprēķinot kases summu");
+        }
+        
         String[] parts = pasutijums.split("- ");
         double cena = Double.parseDouble(parts[1].replace(",", "."));
         kase += cena;
