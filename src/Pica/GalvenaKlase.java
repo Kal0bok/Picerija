@@ -73,6 +73,8 @@ public class GalvenaKlase {
             return;
         }
         
+        String pasutijums = pasutijumuRinda.poll();
+        
 
     private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
         while (true) {
