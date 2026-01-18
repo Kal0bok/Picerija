@@ -48,10 +48,11 @@ public class GalvenaKlase {
         if (tips.equals("Zvans")) {
             processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:");
             p.kopejaCena += 4.50;
+            JOptionPane.showMessageDialog(null, "Piegādes maksa +4.50€ pievienota.");
+            GUI.piegKlients2(false);
+        } else {
+            GUI.piegKlients1(false);
         }
-
-        GUI.piegKlients1(false);
-        GUI.piegKlients2(false);
 
         JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopā apmaksai: " + String.format("%.2f", p.kopejaCena) + "€");
     }
