@@ -18,7 +18,7 @@ public class Klients {
     ));
     
     private static final List<String> uzvardi = new ArrayList<>(Arrays.asList(
-        "Berzins", "Kalnins", "Ozols", "Zarins", "Killer", "Lapiņš"
+        "Berzins", "Kalnins", "Ozols", "Zarins", "Killer", "Lapins"
     ));
     
     private static final List<String> adreses = new ArrayList<>(Arrays.asList(
