@@ -12,13 +12,13 @@ import javax.swing.ScrollPaneConstants;
 public class GalvenaKlase {
     private static Queue<String> pasutijumuRinda = new LinkedList<>();
     private static double kase = 0;
-    private static boolean irPārtraukums = false;
+    private static boolean irPartraukums = false;
     private static final String FAILA_NOSAUKUMS = "pasutijumi.txt";
 
     public static void atvertProgrammu(JFrame frame) {
         String izvele;
         do {
-            String status = irPārtraukums ? " [PĀRTAUKUMS] " : " [DARBĀ] ";
+            String status = irPartraukums ? " [PĀRTRAUKUMS] " : " [DARBĀ] ";
             
             String[] menuOpcijas = {
                 "1 - Pieņemt pasūtījumu", 
@@ -36,7 +36,7 @@ public class GalvenaKlase {
             if (izvele != null) {
                 switch (izvele.charAt(0)) {
                     case '1':
-                        if (irPārtraukums) {
+                        if (irPartraukums) {
                             JOptionPane.showMessageDialog(null, "Jūs nevarat apkalpot klientus, kamēr esat pārtraukumā!", "Pārtraukums", JOptionPane.WARNING_MESSAGE);
                         } else {
                             apkalpotKlientu();
@@ -52,8 +52,8 @@ public class GalvenaKlase {
                         paraditVesturi();
                         break;
                     case '5':
-                        irPārtraukums = !irPārtraukums;
-                        JOptionPane.showMessageDialog(null, irPārtraukums ? "Pārtraukums sākās!" : "Pārtraukums beidzās!");
+                        irPartraukums = !irPartraukums;
+                        JOptionPane.showMessageDialog(null, irPartraukums ? "Pārtraukums sākās!" : "Pārtraukums beidzās!");
                         break;
                     case '0':
                         JOptionPane.showMessageDialog(null, "Programma tiek slēgta.");
@@ -82,7 +82,10 @@ public class GalvenaKlase {
                 processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
                 processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
                 if (!p.izveletaUzkoda.equals("Nekas")) {
-                    processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzкоду?");
+                    processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
+                }
+                if (!p.izveletsDzeriens.equals("Nekas")) {
+                    processIevads("Dzēriens: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kādu dzērienu?");
                 }
                 GUI.piegKlients1(false);
                 break;
@@ -97,6 +100,9 @@ public class GalvenaKlase {
                 if (!p.izveletaUzkoda.equals("Nekas")) {
                     processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
                 }
+                if (!p.izveletsDzeriens.equals("Nekas")) {
+                    processIevads("Dzēriens: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kādu dzērienu?");
+                }
                 processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:");
                 p.kopejaCena += 4.50;
                 JOptionPane.showMessageDialog(null, "Piegādes maksa +4.50€ pievienota.");
@@ -108,6 +114,7 @@ public class GalvenaKlase {
                       "TIPS: " + tips + "\n" +
                       "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
                       "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
+                      "DZĒRIENS: " + p.izveletsDzeriens + "\n" +
                       "SUMMA: " + String.format("%.2f", p.kopejaCena).replace(",", ".") + "€";
         
         pasutijumuRinda.add(info);
