@@ -24,6 +24,8 @@ public class GalvenaKlase {
         
         if (tips.equals("Uz vietas")) {
             GUI.piegKlients1(true);
+        } else {
+            GUI.piegKlients2(true);
         }
 
         Klients k = new Klients();
