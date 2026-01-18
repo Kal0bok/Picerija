@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -15,27 +14,44 @@ public class GalvenaKlase {
     private static Queue<String> pasutijumuRinda = new LinkedList<>();
     private static ArrayList<String> vesture = new ArrayList<>();
     private static double kase = 0;
+    
+    private static boolean irPārtraukums = false;
 
     public static void atvertProgrammu(JFrame frame) {
-        String[] menuOpcijas = {
-            "1 - Pieņemt pasūtījumu", 
-            "2 - Aktīvie pasūtījumi", 
-            "3 - Apkalpot klientu",
-            "4 - Pasūtījumu vēsture",
-            "0 - Iziet"
-        };
-        
         String izvele;
         do {
+            String status = irPārtraukums ? " [PĀRTAUKUMS] " : " [DARBĀ] ";
+            
+            String[] menuOpcijas = {
+                "1 - Pieņemt pasūtījumu", 
+                "2 - Aktīvie pasūtījumi", 
+                "3 - Apkalpot klientu (Apmaksa)",
+                "4 - Pasūtījumu vēsture",
+                "5 - Pārtraukums",
+                "0 - Iziet"
+            };
+            
             izvele = (String) JOptionPane.showInputDialog(null, 
-                "Rindā: " + pasutijumuRinda.size() + " | Kase: " + String.format("%.2f", kase) + "€", 
+                "Statuss:" + status + "| Rindā: " + pasutijumuRinda.size() + " | Kase: " + String.format("%.2f", kase) + "€", 
                 "R-Keeper System", JOptionPane.PLAIN_MESSAGE, null, menuOpcijas, menuOpcijas[0]);
 
             if (izvele != null) {
-                if (izvele.startsWith("1")) apkalpotKlientu();
+                if (izvele.startsWith("1")) {
+                    if (irPārtraukums) {
+                        JOptionPane.showMessageDialog(null, "Jūs nevarat apkalpot klientus, kamēr esat pārtraukumā!", "Pārtraukums", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        apkalpotKlientu();
+                    }
+                }
+                
                 if (izvele.startsWith("2")) paraditAktivosPasutijumus();
                 if (izvele.startsWith("3")) pabeigtPasutijumu();
                 if (izvele.startsWith("4")) paraditVesturi();
+                if (izvele.startsWith("5")) {
+                    irPārtraukums = !irPārtraukums;
+                    String zinojums = irPārtraukums ? "Pārtraukums sākās!" : "Pārtraukums beidzās! Atpakaļ pie darba.";
+                    JOptionPane.showMessageDialog(null, zinojums);
+                }
             }
         } while (izvele != null && !izvele.startsWith("0"));
     }
@@ -84,7 +100,7 @@ public class GalvenaKlase {
                       "TIPS: " + tips + "\n" +
                       "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
                       "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
-                      "SUMMA: " + String.format("%.2f", p.kopejaCena) + "€";
+                      "SUMMA: " + String.format("%.2f", p.kopejaCena).replace(",", ".") + "€";
         
         pasutijumuRinda.add(info);
         JOptionPane.showMessageDialog(null, "Pasūtījums veiksmīgi pievienots rindai!");
@@ -96,17 +112,17 @@ public class GalvenaKlase {
             return;
         }
 
-        String str = "AKTĪVIE PASŪTĪJUMI: " + pasutijumuRinda.size() + 
-                     "\n=================================\n\n";
+        StringBuilder str = new StringBuilder("AKTĪVIE PASŪTĪJUMI: " + pasutijumuRinda.size() + 
+                     "\n=================================\n\n");
 
         int i = 1;
         for (String pasutijums : pasutijumuRinda) {
-            str += i + ". PASŪTĪJUMS:\n" + pasutijums + "\n";
-            str += "---------------------------------\n";
+            str.append(i).append(". PASŪTĪJUMS:\n").append(pasutijums).append("\n");
+            str.append("---------------------------------\n");
             i++;
         }
 
-        JTextArea ta = new JTextArea(str, 15, 45);
+        JTextArea ta = new JTextArea(str.toString(), 15, 45);
         ta.setEditable(false);
         ta.setFont(new Font("Monospaced", Font.PLAIN, 12)); 
         JScrollPane sp = new JScrollPane(ta);
@@ -122,9 +138,7 @@ public class GalvenaKlase {
         }
 
         String pasutijums = pasutijumuRinda.poll();
-        
         vesture.add(pasutijums);
-        
         
         try {
             String[] lines = pasutijums.split("\n");
@@ -168,11 +182,11 @@ public class GalvenaKlase {
             String ievads = JOptionPane.showInputDialog(null, lauks);
 
             if (ievads == null) {
-            	JOptionPane.showMessageDialog(null, "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €");
+                JOptionPane.showMessageDialog(null, "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €");
                 System.exit(0);
             }
 
-            if (ievads.equalsIgnoreCase(pareizi)) break;
+            if (ievads.trim().equalsIgnoreCase(pareizi.trim())) break;
             JOptionPane.showMessageDialog(null, "Nepareizi! Klients atkārto vēlreiz...");
         }
     }
