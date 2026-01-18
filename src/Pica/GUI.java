@@ -20,7 +20,7 @@ public class GUI {
         frame.setVisible(true);
     }
 
-    static JPanel createMainMenu(JFrame frame) {
+    public static JPanel createMainMenu(JFrame frame) {
         URL imgUrl = GUI.class.getResource("/GIF/background.gif");
         JLabel background = new JLabel();
         if (imgUrl != null) {

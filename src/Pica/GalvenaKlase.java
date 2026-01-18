@@ -57,7 +57,9 @@ public class GalvenaKlase {
                         break;
                     case '0':
                         JOptionPane.showMessageDialog(null, "Maiņa nodota. Atgriešanās sākuma ekrānā.");
-                        return; 
+                        frame.setContentPane(GUI.createMainMenu(frame));
+                        frame.revalidate();
+                        frame.repaint(); 
                 }
             } else {
                 return;
