@@ -1,6 +1,0 @@
-KLIENTS: Juris Kalnins
-TIPS: Uz vietas
-PASŪTĪJUMS: Studentu (50cm)
-MĒRCE: Kecups | UZKODA: Sipolu gredzeni
-SUMMA: 17.50€
----------------------------------

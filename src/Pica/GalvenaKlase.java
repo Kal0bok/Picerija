@@ -23,8 +23,8 @@ public class GalvenaKlase {
             String[] menuOpcijas = {
                 "1 - Pieņemt pasūtījumu", 
                 "2 - Aktīvie pasūtījumi", 
-                "3 - Apkalpot klientu (Apmaksa)",
-                "4 - Pasūtījumu vēsture (no faila)", 
+                "3 - Apkalpot klientu",
+                "4 - Pasūtījumu vēsture", 
                 "5 - Pārtraukums",
                 "0 - Nodot maiņu"
             };
