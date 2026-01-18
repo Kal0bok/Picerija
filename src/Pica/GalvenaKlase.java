@@ -1,24 +1,26 @@
 package Pica;
 
+import javax.swing.*;
 import java.util.LinkedList;
 import java.util.Queue;
 
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-public class GalvenaKlase {	
-	
-	private static Queue<String> pasutRinda = new LinkedList<>();
-    private static double kase = 0;
+public class GalvenaKlase {
+    private static Queue<String> pasutijumuRinda = new LinkedList<>();
+    private static double kase = 0; 
 
     public static void atvertProgrammu(JFrame frame) {
+        String[] menuOpcijas = {"1 - Pieņemt pasūtījumu", "2 - Izsniegt pasūtījumu", "0 - Iziet"};
         String izvele;
         do {
-            izvele = JOptionPane.showInputDialog(null, "1 - Pienemt pasutijumu\n0 - Iziet");
-            if (izvele != null && izvele.equals("1")) {
-                apkalpotKlientu();
+            izvele = (String) JOptionPane.showInputDialog(null, 
+                "Pasūtījumi rindā: " + pasutijumuRinda.size() + "\nKase: " + String.format("%.2f", kase) + "€", 
+                "R-Keeper", JOptionPane.PLAIN_MESSAGE, null, menuOpcijas, menuOpcijas[0]);
+
+            if (izvele != null) {
+                if (izvele.startsWith("1")) apkalpotKlientu();
+                if (izvele.startsWith("2")) pabeigtPasutijumu();
             }
-        } while (izvele != null && !izvele.equals("0"));
+        } while (izvele != null && !izvele.startsWith("0"));
     }
 
     private static void apkalpotKlientu() {
@@ -60,21 +62,27 @@ public class GalvenaKlase {
         } else {
             GUI.piegKlients1(false);
         }
-        
-        String pasutijumaInfo = k.getPilnsVards() + " (" + p.izveletaPica + ") - " + String.format("%.2f", p.kopejaCena);
-        pasutijumuRinda.add(pasutijumaInfo);      
 
-        JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopā apmaksai: " + String.format("%.2f", p.kopejaCena) + "€");
+        String pasutijumaInfo = k.getPilnsVards() + " (" + p.izveletaPica + ") - " + String.format("%.2f", p.kopejaCena);
+        pasutijumuRinda.add(pasutijumaInfo);
+        
+        JOptionPane.showMessageDialog(null, "Pasūtījums pievienots rindai!");
     }
-    
+
     private static void pabeigtPasutijumu() {
         if (pasutijumuRinda.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Rinda ir tukša!");
             return;
         }
-        
+
         String pasutijums = pasutijumuRinda.poll();
         
+        String[] parts = pasutijums.split("- ");
+        double cena = Double.parseDouble(parts[1].replace(",", "."));
+        kase += cena;
+
+        JOptionPane.showMessageDialog(null, "Klients apkalpots!\nIzsniegts: " + pasutijums + "€\nNauda saņemta.");
+    }
 
     private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
         while (true) {
