@@ -60,6 +60,9 @@ public class GalvenaKlase {
         } else {
             GUI.piegKlients1(false);
         }
+        
+        String pasutijumaInfo = k.getPilnsVards() + " (" + p.izveletaPica + ") - " + String.format("%.2f", p.kopejaCena);
+        pasutijumuRinda.add(pasutijumaInfo);      
 
         JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopā apmaksai: " + String.format("%.2f", p.kopejaCena) + "€");
     }
