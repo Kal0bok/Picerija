@@ -75,6 +75,31 @@ public class GalvenaKlase {
   pasutijumuRinda.add(info);
         JOptionPane.showMessageDialog(null, "Pasūtījums pievienots rindai!");
     }
+    
+    private static void aktivPasut() {
+        if (pasutijumuRinda.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Pašlaik nav aktīvu pasūtījumu!", "Informācija", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        String str = "AKTĪVIE PASŪTĪJUMI: " + pasutijumuRinda.size() + 
+                     "\n=================================\n\n";
+
+        int i = 1;
+        for (String pasutijums : pasutijumuRinda) {
+            str += i + ". PASŪTĪJUMS:\n" + pasutijums + "\n";
+            str += "---------------------------------\n";
+            i++;
+        }
+
+        JTextArea ta = new JTextArea(str, 15, 45);
+        ta.setEditable(false);
+        ta.setFont(new Font("Monospaced", Font.PLAIN, 12)); 
+        JScrollPane sp = new JScrollPane(ta);
+        sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        JOptionPane.showMessageDialog(null, sp, "Aktīvo pasūtījumu saraksts", JOptionPane.PLAIN_MESSAGE);
+    }
 
     private static void pabeigtPasutijumu() {
         if (pasutijumuRinda.isEmpty()) {
