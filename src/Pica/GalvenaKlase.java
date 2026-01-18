@@ -66,6 +66,13 @@ public class GalvenaKlase {
 
         JOptionPane.showMessageDialog(null, "Pasūtījums pieņemts!\nKopā apmaksai: " + String.format("%.2f", p.kopejaCena) + "€");
     }
+    
+    private static void pabeigtPasutijumu() {
+        if (pasutijumuRinda.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Rinda ir tukša!");
+            return;
+        }
+        
 
     private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
         while (true) {
