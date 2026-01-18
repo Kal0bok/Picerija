@@ -1,20 +1,6 @@
-=== PASŪTĪJUMS ===
-Datums: 2026-01-18 00:58:10
-Klients: Māris Bumbiere (27584324)
-Pasūtījums: Vārds: Māris Bumbiere
-Telefons: 27584324
-Pica: Margarita
-Izmērs: 25cm
-Piedevas: Dubultais siers (+1.50 EUR)
-Uzkodas: Bez uzkodām
-Dzēriens: Alus (+3.00 EUR)
-Mērce: Asā mērce (+0.50 EUR)
-Ievade: Māris bumbiere
-Cena: 0,00 EUR
-Piegāde: Jā
-Adrese: Brīvības iela 10
-Apkalpots: Nē
-==================
-
-Klients: Janis Berziņš | Pasūtījums: Peperoni, 30cm
-Klients: Janis Berziņš | Pasūtījums: Havaju, 30cm
+KLIENTS: Juris Kalnins
+TIPS: Uz vietas
+PASŪTĪJUMS: Studentu (50cm)
+MĒRCE: Kecups | UZKODA: Sipolu gredzeni
+SUMMA: 17.50€
+---------------------------------
