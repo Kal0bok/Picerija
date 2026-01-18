@@ -1,8 +1,15 @@
 package Pica;
 
-import javax.swing.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
-public class GalvenaKlase {
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
+public class GalvenaKlase {	
+	
+	private static Queue<String> pasutRinda = new LinkedList<>();
+    private static double kase = 0;
 
     public static void atvertProgrammu(JFrame frame) {
         String izvele;
