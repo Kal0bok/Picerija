@@ -34,19 +34,30 @@ public class GalvenaKlase {
                 "R-Keeper System", JOptionPane.PLAIN_MESSAGE, null, menuOpcijas, menuOpcijas[0]);
 
             if (izvele != null) {
-                if (izvele.startsWith("1")) {
-                    if (irPārtraukums) {
-                        JOptionPane.showMessageDialog(null, "Jūs nevarat apkalpot klientus, kamēr esat pārtraukumā!", "Pārtraukums", JOptionPane.WARNING_MESSAGE);
-                    } else {
-                        apkalpotKlientu();
-                    }
-                }
-                if (izvele.startsWith("2")) paraditAktivosPasutijumus();
-                if (izvele.startsWith("3")) pabeigtPasutijumu();
-                if (izvele.startsWith("4")) paraditVesturi();
-                if (izvele.startsWith("5")) {
-                    irPārtraukums = !irPārtraukums;
-                    JOptionPane.showMessageDialog(null, irPārtraukums ? "Pārtraukums sākās!" : "Pārtraukums beidzās!");
+                switch (izvele.charAt(0)) {
+                    case '1':
+                        if (irPārtraukums) {
+                            JOptionPane.showMessageDialog(null, "Jūs nevarat apkalpot klientus, kamēr esat pārtraukumā!", "Pārtraukums", JOptionPane.WARNING_MESSAGE);
+                        } else {
+                            apkalpotKlientu();
+                        }
+                        break;
+                    case '2':
+                        paraditAktivosPasutijumus();
+                        break;
+                    case '3':
+                        pabeigtPasutijumu();
+                        break;
+                    case '4':
+                        paraditVesturi();
+                        break;
+                    case '5':
+                        irPārtraukums = !irPārtraukums;
+                        JOptionPane.showMessageDialog(null, irPārtraukums ? "Pārtraukums sākās!" : "Pārtraukums beidzās!");
+                        break;
+                    case '0':
+                        JOptionPane.showMessageDialog(null, "Programma tiek slēgta.");
+                        break;
                 }
             }
         } while (izvele != null && !izvele.startsWith("0"));
@@ -58,31 +69,39 @@ public class GalvenaKlase {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opcijas, opcijas[0]);
 
         if (tipsIndex == -1) return;
+        
         String tips = opcijas[tipsIndex];
-
-        if (tips.equals("Uz vietas")) GUI.piegKlients1(true); else GUI.piegKlients2(true);
-
         Klients k = new Klients();
         Pica p = new Pica();
 
-        processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet vārdu:");
-        if (tips.equals("Zvans")) processIevads("Mans numurs ir " + k.telefons, k.telefons, "Ierakstiet tel. numuru:");
-        
-        processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?");
-        processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
-        processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
+        switch (tipsIndex) {
+            case 0:
+                GUI.piegKlients1(true);
+                processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet vārdu:");
+                processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?");
+                processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
+                processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
+                if (!p.izveletaUzkoda.equals("Nekas")) {
+                    processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzкоду?");
+                }
+                GUI.piegKlients1(false);
+                break;
 
-        if (!p.izveletaUzkoda.equals("Nekas")) {
-            processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
-        }
-
-        if (tips.equals("Zvans")) {
-            processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:");
-            p.kopejaCena += 4.50;
-            JOptionPane.showMessageDialog(null, "Piegādes maksa +4.50€ pievienota.");
-            GUI.piegKlients2(false);
-        } else {
-            GUI.piegKlients1(false);
+            case 1:
+                GUI.piegKlients2(true);
+                processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet vārdu:");
+                processIevads("Mans numurs ir " + k.telefons, k.telefons, "Ierakstiet tel. numuru:");
+                processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?");
+                processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
+                processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
+                if (!p.izveletaUzkoda.equals("Nekas")) {
+                    processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
+                }
+                processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:");
+                p.kopejaCena += 4.50;
+                JOptionPane.showMessageDialog(null, "Piegādes maksa +4.50€ pievienota.");
+                GUI.piegKlients2(false);
+                break;
         }
 
         String info = "KLIENTS: " + k.getPilnsVards() + "\n" +
