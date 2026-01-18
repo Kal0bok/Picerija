@@ -2,6 +2,7 @@ package Pica;
 
 import javax.swing.*;
 import java.util.LinkedList;
+import java.awt.Font;
 import java.util.Queue;
 
 public class GalvenaKlase {
