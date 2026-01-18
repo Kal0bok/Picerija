@@ -1,12 +1,19 @@
 package Pica;
 
-import javax.swing.*;
-import java.util.LinkedList;
 import java.awt.Font;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
 
 public class GalvenaKlase {
     private static Queue<String> pasutijumuRinda = new LinkedList<>();
+    private static ArrayList<String> vesture = new ArrayList<>();
     private static double kase = 0;
 
     public static void atvertProgrammu(JFrame frame) {
@@ -132,12 +139,12 @@ public class GalvenaKlase {
             String ievads = JOptionPane.showInputDialog(null, lauks);
 
             if (ievads == null) {
-                JOptionPane.showMessageDialog(null, "Darbinieks pameta darbu!\nSPĒLES BEIGAS");
+            	JOptionPane.showMessageDialog(null, "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €");
                 System.exit(0);
             }
 
             if (ievads.equalsIgnoreCase(pareizi)) break;
-            JOptionPane.showMessageDialog(null, "Kļūda! Klients dusmīgi atkārto...");
+            JOptionPane.showMessageDialog(null, "Nepareizi! Klients atkārto vēlreiz...");
         }
     }
 }
