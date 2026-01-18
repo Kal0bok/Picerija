@@ -125,6 +125,7 @@ public class GalvenaKlase {
         
         vesture.add(pasutijums);
         
+        
         try {
             String[] lines = pasutijums.split("\n");
             String priceLine = lines[lines.length - 1]; 
@@ -135,6 +136,30 @@ public class GalvenaKlase {
         }
 
         JOptionPane.showMessageDialog(null, "Pasūtījums izsniegts!\nNauda saņemta kase.");
+    }
+    
+    private static void paraditVesturi() {
+        if (vesture.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Vēsture ir tukša!", "Informācija", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("PABEIGTIE PASŪTĪJUMI: ").append(vesture.size())
+          .append("\n=================================\n\n");
+
+        for (int i = 0; i < vesture.size(); i++) {
+            sb.append(i + 1).append(". PASŪTĪJUMS (PABEIGTS):\n").append(vesture.get(i)).append("\n");
+            sb.append("---------------------------------\n");
+        }
+
+        JTextArea ta = new JTextArea(sb.toString(), 15, 45);
+        ta.setEditable(false);
+        ta.setFont(new Font("Monospaced", Font.PLAIN, 12)); 
+        JScrollPane sp = new JScrollPane(ta);
+        sp.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+        JOptionPane.showMessageDialog(null, sp, "Pasūtījumu vēsture", JOptionPane.PLAIN_MESSAGE);
     }
 
     private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
