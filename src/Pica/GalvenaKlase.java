@@ -6,19 +6,26 @@ import java.util.Queue;
 
 public class GalvenaKlase {
     private static Queue<String> pasutijumuRinda = new LinkedList<>();
-    private static double kase = 0; 
+    private static double kase = 0;
 
     public static void atvertProgrammu(JFrame frame) {
-        String[] menuOpcijas = {"1 - Pieņemt pasūtījumu", "2 - Izsniegt pasūtījumu", "0 - Iziet"};
+        String[] menuOpcijas = {
+            "1 - Pieņemt pasūtījumu", 
+            "2 - Aktīvie pasūtījumi", 
+            "3 - Izsniegt pasūtījumu (Apmaksa)", 
+            "0 - Iziet"
+        };
+        
         String izvele;
         do {
             izvele = (String) JOptionPane.showInputDialog(null, 
-                "Pasūtījumi rindā: " + pasutijumuRinda.size() + "\nKase: " + String.format("%.2f", kase) + "€", 
-                "R-Keeper", JOptionPane.PLAIN_MESSAGE, null, menuOpcijas, menuOpcijas[0]);
+                "Rindā: " + pasutijumuRinda.size() + " | Kase: " + String.format("%.2f", kase) + "€", 
+                "R-Keeper System", JOptionPane.PLAIN_MESSAGE, null, menuOpcijas, menuOpcijas[0]);
 
             if (izvele != null) {
                 if (izvele.startsWith("1")) apkalpotKlientu();
-                if (izvele.startsWith("2")) pabeigtPasutijumu();
+                if (izvele.startsWith("2")) paraditAktivosPasutijumus();
+                if (izvele.startsWith("3")) pabeigtPasutijumu();
             }
         } while (izvele != null && !izvele.startsWith("0"));
     }
@@ -47,11 +54,11 @@ public class GalvenaKlase {
         }
 
         processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?");
-        processIevads("Izmērs būs " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
-        processIevads("Mērci man, lūdzu " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
+        processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:");
+        processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?");
 
         if (!p.izveletaUzkoda.equals("Nekas")) {
-            processIevads("Vēlos arī uzkodu: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
+            processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?");
         }
 
         if (tips.equals("Zvans")) {
@@ -63,20 +70,17 @@ public class GalvenaKlase {
             GUI.piegKlients1(false);
         }
 
-        String pasutijumaInfo = k.getPilnsVards() + " (" + p.izveletaPica + ") - " + String.format("%.2f", p.kopejaCena);
-        pasutijumuRinda.add(pasutijumaInfo);
-           
         String info = "KLIENTS: " + k.getPilnsVards() + "\n" +
-                "TIPS: " + tips + "\n" +
-                "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
-                "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
-                "SUMMA: " + String.format("%.2f", p.kopejaCena) + "€";
-  
-  pasutijumuRinda.add(info);
-        JOptionPane.showMessageDialog(null, "Pasūtījums pievienots rindai!");
+                      "TIPS: " + tips + "\n" +
+                      "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
+                      "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
+                      "SUMMA: " + String.format("%.2f", p.kopejaCena) + "€";
+        
+        pasutijumuRinda.add(info);
+        JOptionPane.showMessageDialog(null, "Pasūtījums veiksmīgi pievienots rindai!");
     }
-    
-    private static void aktivPasut() {
+
+    private static void paraditAktivosPasutijumus() {
         if (pasutijumuRinda.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Pašlaik nav aktīvu pasūtījumu!", "Informācija", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -103,7 +107,7 @@ public class GalvenaKlase {
 
     private static void pabeigtPasutijumu() {
         if (pasutijumuRinda.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Rinda ir tukša!");
+            JOptionPane.showMessageDialog(null, "Nav neviena pasūtījuma, ko izsniegt!", "Kļūda", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -117,12 +121,8 @@ public class GalvenaKlase {
         } catch (Exception e) {
             System.out.println("Kļūda aprēķinot kases summu");
         }
-        
-        String[] parts = pasutijums.split("- ");
-        double cena = Double.parseDouble(parts[1].replace(",", "."));
-        kase += cena;
 
-        JOptionPane.showMessageDialog(null, "Klients apkalpots!\nIzsniegts: " + pasutijums + "€\nNauda saņemta.");
+        JOptionPane.showMessageDialog(null, "Pasūtījums izsniegts!\nNauda saņemta kase.");
     }
 
     private static void processIevads(String klientaTeiktais, String pareizi, String lauks) {
@@ -131,12 +131,12 @@ public class GalvenaKlase {
             String ievads = JOptionPane.showInputDialog(null, lauks);
 
             if (ievads == null) {
-                JOptionPane.showMessageDialog(null, "Jūs atteicāties apkalpot klientu!\nSODS: 1 000 000 €");
+                JOptionPane.showMessageDialog(null, "Darbinieks pameta darbu!\nSPĒLES BEIGAS");
                 System.exit(0);
             }
 
             if (ievads.equalsIgnoreCase(pareizi)) break;
-            JOptionPane.showMessageDialog(null, "Nepareizi! Klients atkārto vēlreiz...");
+            JOptionPane.showMessageDialog(null, "Kļūda! Klients dusmīgi atkārto...");
         }
     }
 }
