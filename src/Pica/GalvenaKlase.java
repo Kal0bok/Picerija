@@ -65,7 +65,14 @@ public class GalvenaKlase {
 
         String pasutijumaInfo = k.getPilnsVards() + " (" + p.izveletaPica + ") - " + String.format("%.2f", p.kopejaCena);
         pasutijumuRinda.add(pasutijumaInfo);
-        
+           
+        String info = "KLIENTS: " + k.getPilnsVards() + "\n" +
+                "TIPS: " + tips + "\n" +
+                "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
+                "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
+                "SUMMA: " + String.format("%.2f", p.kopejaCena) + "€";
+  
+  pasutijumuRinda.add(info);
         JOptionPane.showMessageDialog(null, "Pasūtījums pievienots rindai!");
     }
 
