@@ -20,7 +20,8 @@ public class GalvenaKlase {
         String[] menuOpcijas = {
             "1 - Pieņemt pasūtījumu", 
             "2 - Aktīvie pasūtījumi", 
-            "3 - Izsniegt pasūtījumu (Apmaksa)", 
+            "3 - Apkalpot klientu",
+            "4 - Pasūtījumu vēsture",
             "0 - Iziet"
         };
         
@@ -34,6 +35,7 @@ public class GalvenaKlase {
                 if (izvele.startsWith("1")) apkalpotKlientu();
                 if (izvele.startsWith("2")) paraditAktivosPasutijumus();
                 if (izvele.startsWith("3")) pabeigtPasutijumu();
+                if (izvele.startsWith("4")) paraditVesturi();
             }
         } while (izvele != null && !izvele.startsWith("0"));
     }
@@ -120,6 +122,8 @@ public class GalvenaKlase {
         }
 
         String pasutijums = pasutijumuRinda.poll();
+        
+        vesture.add(pasutijums);
         
         try {
             String[] lines = pasutijums.split("\n");
