@@ -17,29 +17,29 @@ public class Pica {
     public static final Map<String, Double> piedevas = new HashMap<>();
 
     static {
-        picas.put("Margarita", 8.0);
-        picas.put("Peperoni", 10.0);
-        picas.put("Havajas", 11.0);
-        picas.put("Studentu", 7.5);
+        picas.put("Margarita (8€)", 8.0);
+        picas.put("Peperoni (10€)", 10.0);
+        picas.put("Havajas (11€)", 11.0);
+        picas.put("Studentu (7,50€)", 7.5);
 
-        izmeri.put("25cm", 0.0);
-        izmeri.put("30cm", 2.0);
-        izmeri.put("50cm", 5.0);
+        izmeri.put("25cm (1€)", 1.0);
+        izmeri.put("30cm (2€)", 2.0);
+        izmeri.put("50cm (5€)", 5.0);
 
-        uzkodas.put("Fri", 2.50);
-        uzkodas.put("Sipolu gredzeni", 3.00);
+        uzkodas.put("Fri (2.50€)", 2.50);
+        uzkodas.put("Sipolu gredzeni (3€)", 3.00);
         uzkodas.put("Nekas", 0.0);
 
-        merces.put("Kiploku", 0.50);
-        merces.put("Asa", 0.50);
-        merces.put("Kecups", 0.50);
+        merces.put("Kiploku (0.50€)", 0.50);
+        merces.put("Asa (0.50€)", 0.50);
+        merces.put("Kecups (0.50€)", 0.50);
 
-        dzerieni.put("Kola", 1.50);
-        dzerieni.put("Udens", 1.00);
+        dzerieni.put("Kola (1,50€)", 1.50);
+        dzerieni.put("Udens (1€)", 1.00);
         dzerieni.put("Nekas", 0.0);
 
-        piedevas.put("Siers", 1.20);
-        piedevas.put("Bekons", 1.50);
+        piedevas.put("Siers (1,20€)", 1.20);
+        piedevas.put("Bekons (1,50€)", 1.50);
         piedevas.put("Nekas", 0.0);
     }
 
@@ -69,5 +69,13 @@ public class Pica {
     private String getRandomKey(Map<String, Double> map) {
         List<String> keys = new ArrayList<>(map.keySet());
         return keys.get(rand.nextInt(keys.size()));
+    }
+
+    public String getOnlyName(String fullKey) {
+        if (fullKey == null) return "";
+        if (fullKey.contains(" (")) {
+            return fullKey.substring(0, fullKey.indexOf(" (")).trim();
+        }
+        return fullKey;
     }
 }

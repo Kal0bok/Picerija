@@ -81,38 +81,38 @@ public class GalvenaKlase {
         if (tipsIndex == 0) {
             GUI.piegKlients1(true);
             if (!processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet vārdu:")) { GUI.piegKlients1(false); return; }
-            if (!processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?")) { GUI.piegKlients1(false); return; }
-            if (!processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:")) { GUI.piegKlients1(false); return; }
-            if (!processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?")) { GUI.piegKlients1(false); return; }
+            
+            if (!processIevads("Es vēlētos picu: " + p.izveletaPica, p.getOnlyName(p.izveletaPica), "Kādu picu klients vēlas?")) { GUI.piegKlients1(false); return; }
+            if (!processIevads("Izmērs: " + p.izveletsIzmers, p.getOnlyName(p.izveletsIzmers), "Ierakstiet picas izmēru:")) { GUI.piegKlients1(false); return; }
+            if (!processIevads("Mērce: " + p.izveletaMerce, p.getOnlyName(p.izveletaMerce), "Kādu mērci?")) { GUI.piegKlients1(false); return; }
             
             if (!p.izveletaPiedeva.equals("Nekas")) {
-                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.izveletaPiedeva, "Kādu piedevu?")) { GUI.piegKlients1(false); return; }
+                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.getOnlyName(p.izveletaPiedeva), "Kādu piedevu?")) { GUI.piegKlients1(false); return; }
             }
-
             if (!p.izveletaUzkoda.equals("Nekas")) {
-                if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?")) { GUI.piegKlients1(false); return; }
+                if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.getOnlyName(p.izveletaUzkoda), "Kādu uzkodu?")) { GUI.piegKlients1(false); return; }
             }
             if (!p.izveletsDzeriens.equals("Nekas")) {
-                if (!processIevads("Dzēriens: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kādu dzērienu?")) { GUI.piegKlients1(false); return; }
+                if (!processIevads("Dzēriens: " + p.izveletsDzeriens, p.getOnlyName(p.izveletsDzeriens), "Kādu dzērienu?")) { GUI.piegKlients1(false); return; }
             }
             GUI.piegKlients1(false);
         } else {
             GUI.piegKlients2(true);
             if (!processIevads("Labdien! Mani sauc " + k.getPilnsVards(), k.getPilnsVards(), "Ierakstiet vārdu:")) { GUI.piegKlients2(false); return; }
             if (!processIevads("Mans numurs ir " + k.telefons, k.telefons, "Ierakstiet tel. numuru:")) { GUI.piegKlients2(false); return; }
-            if (!processIevads("Es vēlētos picu: " + p.izveletaPica, p.izveletaPica, "Kādu picu klients vēlas?")) { GUI.piegKlients2(false); return; }
-            if (!processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:")) { GUI.piegKlients2(false); return; }
-            if (!processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?")) { GUI.piegKlients2(false); return; }
+            
+            if (!processIevads("Es vēlētos picu: " + p.izveletaPica, p.getOnlyName(p.izveletaPica), "Kādu picu?")) { GUI.piegKlients2(false); return; }
+            if (!processIevads("Izmērs: " + p.izveletsIzmers, p.getOnlyName(p.izveletsIzmers), "Izmērs?")) { GUI.piegKlients2(false); return; }
+            if (!processIevads("Mērce: " + p.izveletaMerce, p.getOnlyName(p.izveletaMerce), "Mērce?")) { GUI.piegKlients2(false); return; }
             
             if (!p.izveletaPiedeva.equals("Nekas")) {
-                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.izveletaPiedeva, "Kādu piedevu?")) { GUI.piegKlients2(false); return; }
+                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.getOnlyName(p.izveletaPiedeva), "Piedeva?")) { GUI.piegKlients2(false); return; }
             }
-
             if (!p.izveletaUzkoda.equals("Nekas")) {
-                if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?")) { GUI.piegKlients2(false); return; }
+                if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.getOnlyName(p.izveletaUzkoda), "Uzkoda?")) { GUI.piegKlients2(false); return; }
             }
             if (!p.izveletsDzeriens.equals("Nekas")) {
-                if (!processIevads("Dzēriens: " + p.izveletsDzeriens, p.izveletsDzeriens, "Kādu dzērienu?")) { GUI.piegKlients2(false); return; }
+                if (!processIevads("Dzēriens: " + p.izveletsDzeriens, p.getOnlyName(p.izveletsDzeriens), "Dzēriens?")) { GUI.piegKlients2(false); return; }
             }
             if (!processIevads("Mana adrese ir " + k.adrese, k.adrese, "Ierakstiet piegādes adresi:")) { GUI.piegKlients2(false); return; }
             
@@ -146,7 +146,7 @@ public class GalvenaKlase {
                 return true;
             }
             
-            JOptionPane.showMessageDialog(null, "Nepareizi! Klients atkārto...");
+            JOptionPane.showMessageDialog(null, "Nepareizi! Klients gaidīja: '" + pareizi + "'\nAtkārtojiet...");
         }
     }
 

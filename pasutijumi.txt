@@ -1,0 +1,7 @@
+KLIENTS: Juris Killer
+TIPS: Uz vietas
+PASŪTĪJUMS: Havajas (11€) (30cm (2€))
+MĒRCE: Asa (0.50€) | PIEDEVA: Siers (1,20€)
+UZKODA: Nekas | DZĒRIENS: Nekas
+SUMMA: 14.70€
+---------------------------------
