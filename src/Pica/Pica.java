@@ -14,6 +14,7 @@ public class Pica {
     public static final Map<String, Double> uzkodas = new HashMap<>();
     public static final Map<String, Double> merces = new HashMap<>(); 
     public static final Map<String, Double> dzerieni = new HashMap<>(); 
+    public static final Map<String, Double> piedevas = new HashMap<>();
 
     static {
         picas.put("Margarita", 8.0);
@@ -36,9 +37,14 @@ public class Pica {
         dzerieni.put("Kola", 1.50);
         dzerieni.put("Udens", 1.00);
         dzerieni.put("Nekas", 0.0);
+
+        piedevas.put("Siers", 1.20);
+        piedevas.put("Bekons", 1.50);
+        piedevas.put("Sampinjoni", 1.00);
+        piedevas.put("Nekas", 0.0);
     }
 
-    public String izveletaPica, izveletsIzmers, izveletaUzkoda, izveletaMerce, izveletsDzeriens;
+    public String izveletaPica, izveletsIzmers, izveletaUzkoda, izveletaMerce, izveletsDzeriens, izveletaPiedeva;
     public double kopejaCena = 0;
 
     public Pica() {
@@ -56,6 +62,9 @@ public class Pica {
 
         izveletsDzeriens = getRandomKey(dzerieni);
         kopejaCena += dzerieni.get(izveletsDzeriens);
+
+        izveletaPiedeva = getRandomKey(piedevas);
+        kopejaCena += piedevas.get(izveletaPiedeva);
     }
 
     private String getRandomKey(Map<String, Double> map) {
