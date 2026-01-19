@@ -85,6 +85,10 @@ public class GalvenaKlase {
             if (!processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:")) { GUI.piegKlients1(false); return; }
             if (!processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?")) { GUI.piegKlients1(false); return; }
             
+            if (!p.izveletaPiedeva.equals("Nekas")) {
+                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.izveletaPiedeva, "Kādu piedevu?")) { GUI.piegKlients1(false); return; }
+            }
+
             if (!p.izveletaUzkoda.equals("Nekas")) {
                 if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?")) { GUI.piegKlients1(false); return; }
             }
@@ -100,6 +104,10 @@ public class GalvenaKlase {
             if (!processIevads("Izmērs: " + p.izveletsIzmers, p.izveletsIzmers, "Ierakstiet picas izmēru:")) { GUI.piegKlients2(false); return; }
             if (!processIevads("Mērce: " + p.izveletaMerce, p.izveletaMerce, "Kādu mērci?")) { GUI.piegKlients2(false); return; }
             
+            if (!p.izveletaPiedeva.equals("Nekas")) {
+                if (!processIevads("Papildus vēlos: " + p.izveletaPiedeva, p.izveletaPiedeva, "Kādu piedevu?")) { GUI.piegKlients2(false); return; }
+            }
+
             if (!p.izveletaUzkoda.equals("Nekas")) {
                 if (!processIevads("Uzkoda: " + p.izveletaUzkoda, p.izveletaUzkoda, "Kādu uzkodu?")) { GUI.piegKlients2(false); return; }
             }
@@ -116,8 +124,8 @@ public class GalvenaKlase {
         String info = "KLIENTS: " + k.getPilnsVards() + "\n" +
                       "TIPS: " + tips + "\n" +
                       "PASŪTĪJUMS: " + p.izveletaPica + " (" + p.izveletsIzmers + ")\n" +
-                      "MĒRCE: " + p.izveletaMerce + " | UZKODA: " + p.izveletaUzkoda + "\n" +
-                      "DZĒRIENS: " + p.izveletsDzeriens + "\n" +
+                      "MĒRCE: " + p.izveletaMerce + " | PIEDEVA: " + p.izveletaPiedeva + "\n" +
+                      "UZKODA: " + p.izveletaUzkoda + " | DZĒRIENS: " + p.izveletsDzeriens + "\n" +
                       "SUMMA: " + String.format("%.2f", p.kopejaCena).replace(",", ".") + "€";
         
         pasutijumuRinda.add(info);
