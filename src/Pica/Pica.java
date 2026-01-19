@@ -40,7 +40,6 @@ public class Pica {
 
         piedevas.put("Siers", 1.20);
         piedevas.put("Bekons", 1.50);
-        piedevas.put("Sampinjoni", 1.00);
         piedevas.put("Nekas", 0.0);
     }
 

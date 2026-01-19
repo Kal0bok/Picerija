@@ -181,7 +181,7 @@ public class GalvenaKlase {
             System.out.println("Kļūda aprēķinot kasei.");
         }
 
-        JOptionPane.showMessageDialog(null, "Pasūtījums pabeigts un ierakstīts failā!");
+        JOptionPane.showMessageDialog(null, "Pasūtījums pabeigts!");
     }
     
     private static void paraditVesturi() {
